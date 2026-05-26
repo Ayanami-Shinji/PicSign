@@ -60,6 +60,15 @@ npm run pack:mac
 - **Windows**: `PicSign Setup x.x.x.exe`（安装包）+ `PicSign x.x.x.exe`（绿色免安装版）
 - **macOS**: `PicSign-x.x.x.dmg`
 
+### Windows 构建注意事项
+
+Windows 打包必须在 Windows 环境下执行（sharp 原生模块需要对应平台二进制）：
+
+1. **sharp 下载失败**：国内网络环境下 `pnpm install` 可能卡在下载 sharp 原生二进制。`.npmrc` 已配置 npmmirror 镜像，确保使用 `pnpm install` 而非 `npm install`
+2. **Node.js 版本**：推荐 Node.js 18 LTS，避免 20+ 版本可能的 Electron 兼容问题
+3. **包管理器**：使用 pnpm（`npm install -g pnpm`），项目有 `pnpm-lock.yaml` 和 `pnpm-workspace.yaml`
+4. **构建命令**：`pnpm run pack:win` 会自动执行 tsc 编译 + vite 构建 + electron-builder 打包
+
 ## 技术栈
 
 - **桌面框架**：Electron
