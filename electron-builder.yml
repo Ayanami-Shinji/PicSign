@@ -1,0 +1,62 @@
+appId: com.picsign.app
+productName: PicSign
+directories:
+  output: release
+  buildResources: assets
+
+files:
+  - dist/**/*
+  - node_modules/sharp/**/*
+  - node_modules/@img/**/*
+  - node_modules/electron-store/**/*
+  - node_modules/conf/**/*
+  - node_modules/atomically/**/*
+  - node_modules/dot-prop/**/*
+  - node_modules/env-paths/**/*
+  - node_modules/ajv/**/*
+  - node_modules/ajv-formats/**/*
+  - node_modules/json-schema-typed/**/*
+  - node_modules/semver/**/*
+  - assets/fonts/**/*
+
+win:
+  target:
+    - target: nsis
+      arch: [x64]
+    - target: portable
+      arch: [x64]
+  icon: assets/icons/icon.png
+
+nsis:
+  oneClick: true
+  perMachine: false
+  allowToChangeInstallationDirectory: false
+  installerLanguages:
+    - zh_CN
+    - en_US
+
+mac:
+  target:
+    - target: dmg
+      arch: [arm64]
+  icon: assets/icons/icon.png
+  category: public.app-category.photography
+
+dmg:
+  contents:
+    - x: 130
+      y: 220
+    - x: 410
+      y: 220
+      type: link
+      path: /Applications
+
+linux:
+  target:
+    - target: AppImage
+      arch: [x64]
+  icon: assets/icons/icon.png
+
+asar: true
+asarUnpack:
+  - node_modules/sharp/**/*
